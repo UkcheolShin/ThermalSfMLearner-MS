@@ -11,7 +11,7 @@ This github implements the system described in the paper:
  >
  >[Ukcheol Shin](https://ukcheolshin.github.io/), Kyunghyun Lee, Seokju Lee, In So Kweon
  >
- >[[PDF](https://arxiv.org/abs/2103.00760] [[Project webpage](https://sites.google.com/view/t-sfmlearner)] [[Full paper](https://arxiv.org/abs/2103.00760)] [[Youtube](https://youtu.be/qIBcOuLYr70)] 
+ >[ [[paper](https://arxiv.org/abs/2103.00760)] [[Project webpage](https://sites.google.com/view/t-sfmlearner)]  [[Youtube](https://youtu.be/qIBcOuLYr70)] 
 
 ## Depth estimation results on ViViD dataset
 [![Video Label](https://img.youtube.com/vi/qIBcOuLYr70/0.jpg)](https://youtu.be/qIBcOuLYr70)
