@@ -1,12 +1,12 @@
-# Unsupervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss
+# Self-supervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss
 
 This github implements the system described in the paper:
 
- >Unsupervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss
+ >Self-supervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss
  >
  >[Ukcheol Shin](https://ukcheolshin.github.io/), Kyunghyun Lee, Seokju Lee, In So Kweon
  >
- >**Under Review** 2022 [[PDF](https://arxiv.org/abs/2103.00760] [[Project webpage](https://sites.google.com/view/t-sfmlearner)] [[Full paper](https://arxiv.org/abs/2103.00760)] [[Youtube](https://youtu.be/qIBcOuLYr70)] 
+ >**Robotics and Automation Letter with ICRA presentation ** 2022 [[PDF](https://arxiv.org/abs/2103.00760)] [[Project webpage](https://sites.google.com/view/t-sfmlearner)] [[Full paper](https://arxiv.org/abs/2103.00760)] [[Youtube](https://youtu.be/qIBcOuLYr70)] 
 
 ## Depth estimation results on ViViD dataset
 [![Video Label](https://img.youtube.com/vi/qIBcOuLYr70/0.jpg)](https://youtu.be/qIBcOuLYr70)
@@ -22,13 +22,13 @@ conda env create --file environment.yml
 
 See "scripts/run_prepare_vivid_data.sh".
 
-    For ViViD Raw dataset, download the dataset provided on the official website (https://sites.google.com/view/dgbicra2019-vivid/).
+For ViViD Raw dataset, download the dataset provided on the [official website](https://sites.google.com/view/dgbicra2019-vivid/).
 
-Or you can download our pre-processed dataset from the following link
+For our post-processed dataset and pre-trained models, you can download after fill out a simple [survey](https://docs.google.com/forms/d/e/1FAIpQLSd2IndM_BvsBQ2NypmoF8hGNdVFLQcdHifbHFYAgl62K_z-Pw/viewform?usp=pp_url).
 
-[vivid_RGBT](http://143.248.36.72:5000/sharing/UemVLMicq)
+We will send you an e-mail with a download link.
 
-After download pre-processed dataset, generate training/testing dataset
+After download post-processed dataset, generate training/testing dataset
 
 ```bash
 sh scripts/run_prepare_vivid_data.sh
@@ -61,9 +61,6 @@ and visualize depth by running
 ```bash
 sh scripts/run_inference.sh
 ```
-
-The pretrained models are available here
-[Latest Models](http://kepco.kaist.ac.kr:5000/sharing/NjAgIoeIw)
 
 
 ### Depth Results 
