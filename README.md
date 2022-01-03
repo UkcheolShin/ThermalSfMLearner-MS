@@ -102,13 +102,13 @@ sh scripts/run_inference.sh
 ## Citation
 Please cite the following paper if you use our work, parts of this code, and pre-processed dataset in your research.
  
-    @article{shin2021unsupervised,
-      title={Unsupervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss},
-      author={Shin, Ukcheol and Lee, Kyunghyun and Lee, Seokju and Kweon, In So},
-      journal={arXiv preprint arXiv:2103.00760},
-      year={2021} 
-    }
-
+	@article{shin2021self,
+	  title={Self-supervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss},
+	  author={Shin, Ukcheol and Lee, Kyunghyun and Lee, Seokju and Kweon, In So},
+	  journal={IEEE Robotics and Automation Letters},
+	  year={2021},
+	  publisher={IEEE}
+	}
 
 
  ## Related projects
