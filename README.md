@@ -63,7 +63,10 @@ and visualize depth by running
 ```bash
 sh scripts/run_inference.sh
 ```
-
+You can comprehensively see the overall results by running
+```bash
+sh scripts/display_result.sh
+```
 
 ### Depth Results 
 
@@ -103,9 +106,12 @@ sh scripts/run_inference.sh
 Please cite the following paper if you use our work, parts of this code, and pre-processed dataset in your research.
  
 	@article{shin2021self,
-	  title={Self-supervised Depth and Ego-motion Estimation for Monocular Thermal Video using Multi-spectral Consistency Loss},
+	  title={Self-Supervised Depth and Ego-Motion Estimation for Monocular Thermal Video Using Multi-Spectral Consistency Loss},
 	  author={Shin, Ukcheol and Lee, Kyunghyun and Lee, Seokju and Kweon, In So},
 	  journal={IEEE Robotics and Automation Letters},
+	  volume={7},
+	  number={2},
+	  pages={1103--1110},
 	  year={2021},
 	  publisher={IEEE}
 	}

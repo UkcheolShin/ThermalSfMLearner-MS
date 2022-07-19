@@ -4,7 +4,7 @@
 NAME=vivid_resnet18_outdoor/
 GPU_NUM=1
 DATA_ROOT=/HDD/Dataset_processed/VIVID_256/
-RESULTS_DIR=results/test
+RESULTS_DIR=results
 
 RESNET=18
 IMG_H=256
@@ -27,23 +27,21 @@ for SEQ in ${SEQS[@]}; do
 	DATA_DIR=${DATA_ROOT}/${SEQ}/
 	OUTPUT_DEPTH_DIR=${RESULTS_DIR}/${NAME}/Depth/${SEQ}/
 	OUTPUT_POSE_DIR=${RESULTS_DIR}/${NAME}/POSE/${SEQ}/
-	OUTPUT_VO_DIR=${RESULTS_DIR}/${NAME}/VO/${SEQ}/
 	mkdir -p ${OUTPUT_DEPTH_DIR}
 	mkdir -p ${OUTPUT_POSE_DIR}
-	mkdir -p ${OUTPUT_VO_DIR}
 
 	# Detph Evaulation 
 	CUDA_VISIBLE_DEVICES=${GPU_NUM} python test_disp.py --resnet-layers $RESNET --pretrained-dispnet $DISP_NET \
 	--img-height $IMG_H --img-width $IMG_W --input ${INPUT_TYPE} --scene_type ${SCENE} \
-	--dataset-dir ${DATA_DIR} --output-dir $OUTPUT_DEPTH_DIR #>> ${OUTPUT_DEPTH_DIR}/disp.txt
+	--dataset-dir ${DATA_DIR} --output-dir $OUTPUT_DEPTH_DIR >> ${OUTPUT_DEPTH_DIR}/disp.txt
 
 	CUDA_VISIBLE_DEVICES=${GPU_NUM} python eval_vivid/eval_depth.py --dataset $DATASET --input $INPUT_TYPE --scene ${SCENE} \
 	--pred_depth ${OUTPUT_DEPTH_DIR}/predictions.npy --gt_depth ${DATA_DIR}/${DEPTH_GT_DIR}/ \
-	--img_dir ${DATA_DIR} --vis_dir ${OUTPUT_DEPTH_DIR} --img_dir ${DATA_DIR} #>> ${OUTPUT_DEPTH_DIR}/eval_depth.txt
+	--img_dir ${DATA_DIR} --vis_dir ${OUTPUT_DEPTH_DIR} --img_dir ${DATA_DIR} >> ${OUTPUT_DEPTH_DIR}/eval_depth.txt
 
 	# Pose Evaulation 
 	CUDA_VISIBLE_DEVICES=${GPU_NUM} python test_pose.py --resnet-layers $RESNET --pretrained-posenet $POSE_NET \
 	--img-height $IMG_H --img-width $IMG_W --scene_type ${SCENE} \
 	--dataset-dir ${DATA_ROOT} --output-dir ${OUTPUT_POSE_DIR} \
-	--input ${INPUT_TYPE} --sequences ${SEQ} #>> ${OUTPUT_POSE_DIR}/eval_pose.txt
+	--input ${INPUT_TYPE} --sequences ${SEQ} >> ${OUTPUT_POSE_DIR}/eval_pose.txt
 done

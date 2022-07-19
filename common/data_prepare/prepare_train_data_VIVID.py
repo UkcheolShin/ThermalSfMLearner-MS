@@ -6,6 +6,7 @@ import sys
 from tqdm import tqdm
 from path import Path
 import cv2
+import shutil
 
 parser = argparse.ArgumentParser()
 parser.add_argument("dataset_dir", metavar='DIR',
@@ -78,6 +79,33 @@ def dump_example(args, scene):
     if len(dump_dir_rgb.files('*.png')) < 3:
         dump_dir.rmtree()
 
+def extract_well_lit_images(args):
+    tgt_dir   = args.dump_root/'indoor_robust_varying'
+    dump_dir   = args.dump_root/'indoor_robust_varying_well_lit'   
+    dump_dir.makedirs_p()
+    dump_dir_ther      = dump_dir/"Thermal"
+    dump_dir_rgb       = dump_dir/"RGB"
+    dump_dir_depth_T   = dump_dir/"Depth_T"
+    dump_dir_depth_RGB = dump_dir/"Depth_RGB"
+    dump_dir_ther.makedirs_p()
+    dump_dir_rgb.makedirs_p()
+    dump_dir_depth_T.makedirs_p()
+    dump_dir_depth_RGB.makedirs_p()
+
+    # read well-lit image list
+    img_list = np.genfromtxt('./common/data_prepare/well_lit_from_varying.txt').astype(int) # 
+
+    for frame_nb in img_list :
+        dump_img_T_file     = dump_dir_rgb/'{:06d}.png'.format(frame_nb)
+        dump_img_RGB_file   = dump_dir_ther/'{:06d}.png'.format(frame_nb)        
+        dump_depth_T_file   = dump_dir_depth_T/'{:06d}.npy'.format(frame_nb)
+        dump_depth_RGB_file = dump_dir_depth_RGB/'{:06d}.npy'.format(frame_nb)
+
+        shutil.copy(tgt_dir/"Thermal"/'{:06d}.png'.format(frame_nb), dump_img_T_file)
+        shutil.copy(tgt_dir/"RGB"/'{:06d}.png'.format(frame_nb), dump_img_RGB_file)
+        shutil.copy(tgt_dir/"Depth_T"/'{:06d}.npy'.format(frame_nb), dump_depth_T_file)
+        shutil.copy(tgt_dir/"Depth_RGB"/'{:06d}.npy'.format(frame_nb), dump_depth_RGB_file)
+
 def main():
     args.dump_root = Path(args.dump_root)
     args.dump_root.mkdir_p()
@@ -106,6 +134,9 @@ def main():
             except KeyboardInterrupt as e:
                 tasks.cancel()
                 raise e
+
+    print('Extracting well-lit image from varying illumination set')
+    extract_well_lit_images(args)
 
     print('Generating train val lists')
     with open(args.dump_root / 'train_indoor.txt', 'w') as tf:
